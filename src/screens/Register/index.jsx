@@ -3,6 +3,7 @@ import { View, Text, TextInput, KeyboardAvoidingView, Platform } from 'react-nat
 import PropTypes from 'prop-types';
 import validateJs from 'validate.js';
 
+import { register } from '../../common/tools/user';
 import validations from './validations';
 import { Button } from '../../common/components';
 import * as strings from '../../common/strings';
@@ -21,16 +22,20 @@ const Register = props => {
     navigation.goBack();
   };
 
-  const onSignUp = () => {
-    isFormValid(credentials);
+  const onSignUp = async () => {
+    if (isFormValid(credentials)) {
+      await register(credentials);
+    }
   };
 
   const isFormValid = fields => {
     const formErrors = validateJs(fields, validations);
     if (formErrors) {
-      return setErrors(formErrors);
+      setErrors(formErrors);
+      return false;
     }
-    return setErrors({});
+    setErrors({});
+    return true;
   };
 
   const behavior = Platform.OS === 'android' ? 'height' : 'padding';
