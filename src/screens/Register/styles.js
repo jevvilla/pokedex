@@ -17,7 +17,6 @@ export default StyleSheet.create({
     width: '100%',
     height: 45,
     paddingHorizontal: sizes.base,
-    marginVertical: sizes.base,
     borderRadius: sizes.radius,
     borderWidth: StyleSheet.hairlineWidth,
   },
@@ -26,5 +25,13 @@ export default StyleSheet.create({
     width: '100%',
     justifyContent: 'space-between',
     marginTop: sizes.base,
+  },
+  errorLabel: {
+    color: colors.red,
+    fontSize: 12,
+  },
+  row: {
+    width: '100%',
+    marginVertical: 8,
   },
 });
