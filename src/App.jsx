@@ -1,12 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+
+import Router from './navigation';
 
 const App = () => {
-  return (
-    <View>
-      <Text>pokedex</Text>
-    </View>
-  );
+  return <Router />;
 };
 
 export default App;
