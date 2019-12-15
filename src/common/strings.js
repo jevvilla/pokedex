@@ -9,3 +9,6 @@ export const LOGIN_BUTTON = 'Login';
 export const CREATE_ACCOUNT = 'Create account';
 export const LOGIN_ERROR = 'Error, try later';
 export const NOT_EXISTING_USER = 'Error, user not found';
+
+// HOME
+export const HOME = 'Home';

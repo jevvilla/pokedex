@@ -20,3 +20,30 @@ export const colors = {
   transparent: '#00000000',
   white: '#FFFFFF',
 };
+
+export const shadow = () => {
+  return {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 2,
+      height: 5,
+    },
+    shadowOpacity: 0.13,
+    shadowRadius: 3.62,
+    elevation: 2,
+  };
+};
+
+export const defaultHeader = {
+  borderBottomWidth: 0,
+  elevation: 0,
+  height: 64,
+  backgroundColor: colors.background,
+};
+
+export const headerTitle = {
+  color: colors.dark,
+  fontWeight: 'bold',
+  fontSize: 20,
+  opacity: 0.8,
+};
