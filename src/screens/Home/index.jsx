@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ActivityIndicator, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
-import { debounce } from 'lodash';
+import debounce from 'lodash.debounce';
 
 import { logout } from '../../common/tools/user';
 import { IconButton } from '../../common/components';
