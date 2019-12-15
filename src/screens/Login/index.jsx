@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import validateJs from 'validate.js';
 
 import validations from './validation';
-import { getUser } from '../../common/tools/user';
+import { login } from '../../common/tools/user';
 import { Button } from '../../common/components';
 import * as routes from '../../navigation/routes';
 import * as strings from '../../common/strings';
@@ -20,7 +20,7 @@ const Login = props => {
   const onLogin = async () => {
     if (isFormValid(credentials)) {
       try {
-        const user = await getUser(credentials);
+        const user = await login(credentials);
         if (user) {
           return goToHome();
         }
