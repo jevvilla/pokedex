@@ -25,6 +25,7 @@ const PokeCardList = props => {
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
         ListFooterComponent={<SafeAreaView forceInset={{ bottom: 'always' }} />}
       />
     </>
