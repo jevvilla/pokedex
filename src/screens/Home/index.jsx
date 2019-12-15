@@ -6,7 +6,7 @@ import { logout } from '../../common/tools/user';
 import { IconButton } from '../../common/components';
 import { colors } from '../../common/styles';
 import * as strings from '../../common/strings';
-import { SWITCH_AUTH } from '../../navigation/routes';
+import { SWITCH_AUTH, DETAILS } from '../../navigation/routes';
 import { getAllPokemon } from '../../common/api';
 import PokeCardList from './components/PokeCardList';
 
@@ -46,12 +46,18 @@ const Home = props => {
     }
   };
 
+  const goToDetails = item => {
+    const { navigation } = props;
+
+    navigation.navigate(DETAILS, { item });
+  };
+
   const renderPokemons = () => {
     if (fetchingPokemon) {
       return <ActivityIndicator size="small" />;
     }
 
-    return <PokeCardList data={pokemons} onCardPress={() => {}} />;
+    return <PokeCardList data={pokemons} onCardPress={goToDetails} />;
   };
 
   if (error) {

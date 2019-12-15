@@ -12,7 +12,7 @@ const PokeCardList = props => {
 
   // eslint-disable-next-line react/prop-types
   const renderItem = ({ item }) => {
-    return <PokeCard onPokeCardPress={onCardPress} style={styles.card} {...item} />;
+    return <PokeCard onPokeCardPress={() => onCardPress(item)} style={styles.card} {...item} />;
   };
 
   const keyExtractor = item => `${item.id}${item.name}`;
