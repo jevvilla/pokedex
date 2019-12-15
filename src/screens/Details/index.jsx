@@ -63,7 +63,7 @@ const Details = props => {
 };
 
 Details.navigationOptions = ({ navigation }) => {
-  const pokemonName = navigation.getParam('pokemonName', () => {});
+  const pokemonName = navigation.getParam('pokemonName');
   const logoutAction = navigation.getParam('logoutAction', () => {});
 
   return {
