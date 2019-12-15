@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
 import validateJs from 'validate.js';
 
@@ -22,9 +22,11 @@ const Register = props => {
     navigation.goBack();
   };
 
-  const onSignUp = async () => {
+  const onSignUp = () => {
     if (isFormValid(credentials)) {
-      await register(credentials);
+      if (register(credentials)) {
+        goBack();
+      }
     }
   };
 
@@ -38,10 +40,8 @@ const Register = props => {
     return true;
   };
 
-  const behavior = Platform.OS === 'android' ? 'height' : 'padding';
-
   return (
-    <KeyboardAvoidingView style={styles.container} behavior={behavior} enabled>
+    <View style={styles.container}>
       <View style={styles.form}>
         <Text>Register</Text>
         <View style={styles.row}>
@@ -50,6 +50,7 @@ const Register = props => {
             placeholder={strings.PLACEHOLDER_USERNAME}
             value={credentials.username}
             autoCorrect={false}
+            autoCapitalize="none"
             textContentType="familyName"
             onChangeText={value => onChangeTextInputHandler('username', value)}
           />
@@ -61,6 +62,7 @@ const Register = props => {
             placeholder={strings.PLACEHOLDER_EMAIL}
             value={credentials.email}
             textContentType="emailAddress"
+            autoCapitalize="none"
             onChangeText={value => onChangeTextInputHandler('email', value)}
           />
           <Text style={styles.errorLabel}>{errors?.email}</Text>
@@ -90,7 +92,7 @@ const Register = props => {
           <Button primary title="Sign Up" onPress={onSignUp} />
         </View>
       </View>
-    </KeyboardAvoidingView>
+    </View>
   );
 };
 
