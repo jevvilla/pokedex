@@ -12,3 +12,4 @@ export const NOT_EXISTING_USER = 'Error, user not found';
 
 // HOME
 export const HOME = 'Home';
+export const SEARCH_PLACEHOLDER = 'search a pokemon...';

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
+import { debounce } from 'lodash';
 
 import { logout } from '../../common/tools/user';
 import { IconButton } from '../../common/components';
@@ -12,10 +13,13 @@ import PokeCardList from './components/PokeCardList';
 
 import styles from './styles';
 
+let searchText = '';
+
 const Home = props => {
   const [fetchingPokemon, setFetchingPokemon] = useState(false);
   const [pokemons, setPokemons] = useState([]);
   const [error, setError] = useState(null);
+  const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {
     const { navigation } = props;
@@ -32,6 +36,18 @@ const Home = props => {
     } catch (err) {
       setError(err);
     }
+  };
+
+  const onChangeTextInputHandler = debounce(value => {
+    searchText = value;
+    searchPokemons(searchText);
+  }, 300);
+
+  const searchPokemons = value => {
+    const filteredPokemons = pokemons.filter(pokemon => {
+      return pokemon.name.includes(value);
+    });
+    setSearchResult(filteredPokemons);
   };
 
   const fetchPokemon = async () => {
@@ -57,7 +73,7 @@ const Home = props => {
       return <ActivityIndicator size="small" />;
     }
 
-    return <PokeCardList data={pokemons} onCardPress={goToDetails} />;
+    return <PokeCardList data={searchText ? searchResult : pokemons} onCardPress={goToDetails} />;
   };
 
   if (error) {
@@ -68,7 +84,19 @@ const Home = props => {
     );
   }
 
-  return <View style={styles.container}>{renderPokemons()}</View>;
+  return (
+    <View style={[styles.container]}>
+      <View style={styles.searchSection}>
+        <TextInput
+          style={styles.input}
+          placeholder={strings.SEARCH_PLACEHOLDER}
+          onChangeText={onChangeTextInputHandler}
+          autoCapitalize="none"
+        />
+      </View>
+      {renderPokemons()}
+    </View>
+  );
 };
 
 Home.navigationOptions = ({ navigation }) => {
