@@ -7,7 +7,6 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
-  flatlist: { paddingHorizontal: 16 },
   headerTitle: {
     ...headerTitle,
   },
